@@ -6,7 +6,7 @@ import Footer from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import ScrollToTop from "./components/ScrolltoTop";
+import ScrollToTop from "./components/ScrollToTop";
 
 import AboutUs from "./pages/AboutUs";
 import Login from "./pages/Login";
