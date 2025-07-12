@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { faq } from "./faqdata";
-import { GiHerbsBundle } from "react-icons/gi"; // Changed icon
+import { GiHerbsBundle } from "react-icons/gi";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [conversations, setConversations] = useState([]); // All sessions
-  const [currentChatIndex, setCurrentChatIndex] = useState(null); // Active session
+  const [conversations, setConversations] = useState([]);
+  const [currentChatIndex, setCurrentChatIndex] = useState(null);
   const [input, setInput] = useState("");
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const startNewChat = () => {
     const welcomeMessage = { sender: "bot", text: "Can I help you with anything?" };
     setConversations([...conversations, [welcomeMessage]]);
-    setCurrentChatIndex(conversations.length); // index of new session
+    setCurrentChatIndex(conversations.length);
   };
 
   const toggleChat = () => {
     if (!isOpen) {
-      startNewChat(); // Only start new tab when opening
+      startNewChat();
     }
     setIsOpen(!isOpen);
   };
 
   const getAnswer = (question) => {
-    const match = faq.find(
-      (f) => f.question.toLowerCase() === question.toLowerCase()
-    );
+    const match = faq.find(f => f.question.toLowerCase() === question.toLowerCase());
     return match ? match.answer : "Sorry, I have no information about this.";
   };
 
@@ -33,12 +39,7 @@ const Chatbot = () => {
     const userMessage = { sender: "user", text: input };
     const botMessage = { sender: "bot", text: getAnswer(input) };
 
-    const updatedConvo = [
-      ...conversations[currentChatIndex],
-      userMessage,
-      botMessage,
-    ];
-
+    const updatedConvo = [...conversations[currentChatIndex], userMessage, botMessage];
     const allConvos = [...conversations];
     allConvos[currentChatIndex] = updatedConvo;
     setConversations(allConvos);
@@ -51,14 +52,21 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chat Icon with Tooltip */}
-      <div className="fixed bottom-5 right-5 z-50 group">
+      {/* Chatbot FAB */}
+      <div
+        className="z-50 group"
+        style={{
+          position: "fixed",
+          bottom: isMobile ? "70px" : "20px",
+          right: isMobile ? "16px" : "20px",
+        }}
+      >
         <button
           onClick={toggleChat}
-          className="bg-green-700 text-white p-4 rounded-full shadow-lg shadow-white hover:bg-green-800 relative"
+          className="bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-green-800 relative"
         >
-          <GiHerbsBundle size={40} /> {/* Herbal-themed icon */}
-          <span className="absolute -left-36 top-1/2 transform -translate-y-1/2 bg-white text-green-700 text-sm px-3 py-1 rounded shadow-md shadow-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <GiHerbsBundle size={isMobile ? 30 : 40} />
+          <span className="absolute -left-36 top-1/2 transform -translate-y-1/2 bg-white text-green-700 text-sm px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Ask about herbs 🌿
           </span>
         </button>
@@ -66,9 +74,18 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-20 right-5 w-[350px] h-[450px] bg-white border rounded-lg shadow-lg z-50 flex flex-col">
+        <div
+          className="bg-white border rounded-lg shadow-lg z-50 flex flex-col"
+          style={{
+            position: "fixed",
+            bottom: isMobile ? "120px" : "80px",
+            right: isMobile ? "10px" : "20px",
+            width: isMobile ? "90vw" : "350px",
+            height: isMobile ? "70vh" : "450px",
+          }}
+        >
           {/* Header */}
-          <div className="relative bg-green-700 text-white p-3 rounded-t-lg font-semibold flex justify-between items-center">
+          <div className="bg-green-700 text-white p-3 rounded-t-lg font-semibold flex justify-between items-center">
             <span>Herbal Chatbot - Chat {currentChatIndex + 1}</span>
             <button
               onClick={toggleChat}
@@ -78,16 +95,14 @@ const Chatbot = () => {
             </button>
           </div>
 
-          {/* Chat Sessions Tabs */}
+          {/* Tabs */}
           <div className="flex overflow-x-auto p-2 space-x-2 bg-gray-100 text-xs">
             {conversations.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentChatIndex(idx)}
                 className={`px-2 py-1 rounded ${
-                  idx === currentChatIndex
-                    ? "bg-green-600 text-white"
-                    : "bg-white border"
+                  idx === currentChatIndex ? "bg-green-600 text-white" : "bg-white border"
                 }`}
               >
                 Chat {idx + 1}

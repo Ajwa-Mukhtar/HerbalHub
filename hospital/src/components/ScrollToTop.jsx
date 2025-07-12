@@ -13,11 +13,7 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
+      setShowButton(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -31,8 +27,8 @@ export default function ScrollToTop() {
     });
   };
 
-  // Adjust position based on whether we are on the home page
   const isHomePage = pathname === '/';
+  const isMobile = window.innerWidth <= 480;
 
   return (
     <>
@@ -41,17 +37,23 @@ export default function ScrollToTop() {
           onClick={scrollToTop}
           style={{
             position: 'fixed',
-            bottom: isHomePage ? '100px' : '40px', // Shift up on home page
-            right: '40px',
-            backgroundColor: isHomePage ? '#fff' : '#008000', // White on home page, Green on others
-            color: isHomePage ? '#008000' : '#fff', // Green text on home page, White text on others
+            bottom: isMobile
+              ? isHomePage
+                ? '80px'
+                : '20px'
+              : isHomePage
+              ? '100px'
+              : '40px',
+            right: isMobile ? '16px' : '40px',
+            backgroundColor: isHomePage ? '#fff' : '#008000',
+            color: isHomePage ? '#008000' : '#fff',
             border: 'none',
             borderRadius: '50%',
-            padding: '10px 20px',
-            fontSize: '25px',
+            padding: isMobile ? '8px 12px' : '10px 20px',
+            fontSize: isMobile ? '20px' : '25px',
             cursor: 'pointer',
             zIndex: 1000,
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Optional: add a shadow for better visibility
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
           }}
         >
           ↑
