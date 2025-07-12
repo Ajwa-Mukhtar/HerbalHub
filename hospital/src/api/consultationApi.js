@@ -1,11 +1,10 @@
 import axios from 'axios';
-
-const API_BASE_URL = 'https://localhost:7236/api/User';
+import API_BASE_URL from './baseURL'; // baseURL.js se import
 
 export const submitConsultation = async (data) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/consultation`,
+      `${API_BASE_URL}/api/User/consultation`,
       data,
       {
         headers: {

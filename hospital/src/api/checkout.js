@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://localhost:7236"; // 🔁 use http if needed
+import API_BASE_URL from "./baseURL"; // same folder ke andar hai toh ./baseURL
 
 export const submitCheckout = async (data) => {
   try {

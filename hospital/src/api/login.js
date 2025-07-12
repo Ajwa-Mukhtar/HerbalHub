@@ -1,8 +1,9 @@
 // src/api/login.js
 
-// Login API
+import API_BASE_URL from './baseURL';
+
 export async function loginUser(email, password) {
-  const response = await fetch("https://localhost:7236/api/User/login", {
+  const response = await fetch(`${API_BASE_URL}/api/User/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userEmail: email, password }),
@@ -14,6 +15,5 @@ export async function loginUser(email, password) {
     throw new Error(data.errorMessage || "Login failed");
   }
 
-  return data; // data.data.token etc.
+  return data; // e.g., data.data.token etc.
 }
-
