@@ -1,8 +1,6 @@
-import API_BASE_URL from "./baseURL"; // same folder ke andar hai toh ./baseURL
-
 export const submitCheckout = async (data) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/User/checkout`, {
+    const response = await fetch("https://localhost:7236/api/User/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

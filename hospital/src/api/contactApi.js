@@ -1,10 +1,11 @@
 import axios from 'axios';
-import API_BASE_URL from './baseURL'; // yahan import karo
+
+const API_BASE_URL = 'https://localhost:7236/api/User';
 
 export const submitContactForm = async (contactData) => {
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/api/User/ContactUs`,
+      `${API_BASE_URL}/ContactUs`,
       contactData,
       {
         headers: {

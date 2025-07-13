@@ -1,8 +1,6 @@
 // src/api/user.js
-import API_BASE_URL from './baseURL';
-
 export async function submitSignup(formData) {
-  const response = await fetch(`${API_BASE_URL}/api/User/User`, {
+  const response = await fetch("https://localhost:7236/api/User/User", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -23,3 +21,5 @@ export async function submitSignup(formData) {
 
   return data;
 }
+
+
