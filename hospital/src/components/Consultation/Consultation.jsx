@@ -79,7 +79,7 @@ const Consultation = () => {
               Book Your Free Consultation
             </h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Let’s discuss how we can help you. Our Herbalist is ready to provide tailored advice.
+              Let’s discuss how we can help you. Our Herbalist is ready to provide tailored advice. All our products are made by him.
             </p>
 
             {/* Submission Status Message */}
