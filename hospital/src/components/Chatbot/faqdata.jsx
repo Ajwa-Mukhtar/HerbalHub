@@ -11,6 +11,10 @@ export const faq = [
     question: "Hello",
     answer: "Yes, how can i help you?",
   },
+   {
+    question: "Hi",
+    answer: "Yes, how can i help you?",
+  },
   {
     question: "Do you have certified organic herbs?",
     answer: "Yes, we offer a selection of certified organic herbs.",

@@ -8,6 +8,7 @@ import Banner from "../components/Banner/Banner";
 import Testimonials from "../components/Testimonials/Testimonials";
 import Popup from "../components/Popup/Popup";
 import Consultation from "../components/Consultation/Consultation";
+import Chatbot from "../components/Chatbot/Chat";
 
 const Home = () => {
   const [orderPopup, setOrderPopup] = React.useState(false);
@@ -27,13 +28,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
+    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 relative">
       <Hero handleOrderPopup={handleOrderPopup} />
       <Products />
       <TopProducts handleOrderPopup={handleOrderPopup} />
       <Banner />
       <Consultation />
       <Testimonials />
+      {/* ✅ Chatbot is inside component tree but visually "on top" due to fixed position */}
+      <Chatbot />
       <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} />
     </div>
   );
