@@ -34,7 +34,7 @@ const Consultation = () => {
 
       setSubmitStatus({
         success: true,
-        message: "Consultation request submitted successfully!",
+        message: "Consultation request submitted successfully! Check your email for further updates.",
       });
       
       // Reset form after successful submission
@@ -118,7 +118,7 @@ const Consultation = () => {
               />
               <textarea
                 name="message"
-                placeholder="Tell us about your needs..."
+                placeholder="Tell us about your needs, like your issue and why you need the consultation."
                 rows="4"
                 className="w-full p-3 rounded-md border border-gray-300 text-black"
                 value={formData.message}

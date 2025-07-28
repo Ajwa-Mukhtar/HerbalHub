@@ -33,7 +33,7 @@ const ContactUs = () => {
       await submitContactForm(formData);
       setSubmitStatus({
         success: true,
-        message: "Your message has been sent successfully!"
+        message: "Your message has been sent successfully! Our team will contact you within 24 hours in sha allah."
       });
       // Reset form after successful submission
       setFormData({

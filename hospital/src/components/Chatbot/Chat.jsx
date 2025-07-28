@@ -7,7 +7,6 @@ const Chatbot = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChatIndex, setCurrentChatIndex] = useState(null);
   const [input, setInput] = useState("");
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
   useEffect(() => {
@@ -17,8 +16,8 @@ const Chatbot = () => {
   }, []);
 
   const startNewChat = () => {
-    const welcomeMessage = { sender: "bot", text: "Can I help you with anything?" };
-    setConversations([...conversations, [welcomeMessage]]);
+    const welcome = { sender: "bot", text: "Can I help you with anything?" };
+    setConversations([...conversations, [welcome]]);
     setCurrentChatIndex(conversations.length);
   };
 
@@ -27,20 +26,20 @@ const Chatbot = () => {
     setIsOpen(!isOpen);
   };
 
-  const getAnswer = (question) => {
-    const match = faq.find(f => f.question.toLowerCase() === question.toLowerCase());
+  const getAnswer = (q) => {
+    const match = faq.find(f => f.question.toLowerCase() === q.toLowerCase());
     return match ? match.answer : "Sorry, I have no information about this.";
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
-    const userMessage = { sender: "user", text: input };
-    const botMessage = { sender: "bot", text: getAnswer(input) };
+    const userMsg = { sender: "user", text: input };
+    const botMsg = { sender: "bot", text: getAnswer(input) };
 
-    const updatedConvo = [...conversations[currentChatIndex], userMessage, botMessage];
-    const allConvos = [...conversations];
-    allConvos[currentChatIndex] = updatedConvo;
-    setConversations(allConvos);
+    const updated = [...conversations[currentChatIndex], userMsg, botMsg];
+    const all = [...conversations];
+    all[currentChatIndex] = updated;
+    setConversations(all);
     setInput("");
   };
 
@@ -50,46 +49,31 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* FAB Button */}
-      <div
-        className="z-50 group"
-        style={{
-          position: "fixed",
-          bottom: isMobile ? "80px" : "20px",
-          right: isMobile ? "16px" : "20px",
-        }}
-      >
+      {/* Floating Button */}
+      <div className="fixed bottom-6 right-4 sm:bottom-6 sm:right-6 z-50">
         <button
           onClick={toggleChat}
-          className="bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-green-800 relative"
+          className="bg-green-700 text-white p-4 rounded-full shadow-lg hover:bg-green-800 relative group"
         >
           <GiHerbsBundle size={isMobile ? 30 : 40} />
-          <span className="absolute -left-36 top-1/2 transform -translate-y-1/2 bg-white text-green-700 text-sm px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="absolute -left-36 top-1/2 transform -translate-y-1/2 bg-white text-green-700 text-sm px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             Ask about herbs 🌿
           </span>
         </button>
       </div>
 
-      {/* Chat Window */}
+      {/* Chat Box */}
       {isOpen && (
         <div
-          className="bg-white border rounded-lg shadow-lg z-50 flex flex-col"
-          style={{
-            position: "fixed",
-            bottom: isMobile ? "140px" : "80px",
-            right: isMobile ? "10px" : "20px",
-            width: isMobile ? "90vw" : "350px",
-            height: isMobile ? "75vh" : "450px",
-            maxHeight: "85vh",
-          }}
+          className={`fixed z-[999] flex flex-col overflow-hidden border rounded-lg shadow-lg bg-white ${
+            isMobile
+              ? "bottom-[80px] right-2 w-[92vw] h-[75vh]"
+              : "bottom-[90px] right-6 w-[350px] h-[450px]"
+          }`}
         >
-          {/* Header */}
           <div className="bg-green-700 text-white p-3 rounded-t-lg font-semibold flex justify-between items-center text-sm">
             <span>Herbal Chatbot - Chat {currentChatIndex + 1}</span>
-            <button
-              onClick={toggleChat}
-              className="text-white hover:text-gray-300 text-xl leading-none"
-            >
+            <button onClick={toggleChat} className="text-white hover:text-gray-300 text-xl">
               &times;
             </button>
           </div>
@@ -114,7 +98,7 @@ const Chatbot = () => {
             {conversations[currentChatIndex]?.map((msg, index) => (
               <div
                 key={index}
-                className={`p-2 rounded-md max-w-[75%] ${
+                className={`p-2 rounded-md max-w-[75%] break-words ${
                   msg.sender === "user"
                     ? "bg-gray-200 self-end ml-auto"
                     : "bg-green-100 self-start"
@@ -125,7 +109,7 @@ const Chatbot = () => {
             ))}
           </div>
 
-          {/* Input Area */}
+          {/* Input */}
           <div className="flex border-t p-2">
             <input
               type="text"

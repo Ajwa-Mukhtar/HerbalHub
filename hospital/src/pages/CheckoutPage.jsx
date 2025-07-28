@@ -55,7 +55,7 @@ const CheckoutPage = () => {
     console.log("Parsed response:", response);
 
     if (response && response.responseCode === 200) {
-      alert("Your order has been placed successfully!");
+      alert("Your order has been placed successfully! Check your mail for further details. You can contact us too.");
       navigate("/AllCategories"); // ✅ Redirect after success
     } else {
       alert(response?.errorMessage || "Order failed. Try again.");
@@ -197,6 +197,7 @@ const CheckoutPage = () => {
                       <p>Account Title: Attia Khan</p>
                       <p>Account Number: 0083976353748463848</p>
                       <p>IBAN: PK47937JF973J8J48JKII</p>
+                      <p><strong>After checking your payment</strong>, your order will proceed to delivery process.</p>
                     </div>
                   )}
                 </label>
