@@ -144,7 +144,7 @@ const Navbar = ({ handleOrderPopup, scrollToTopSelling }) => {
                   onClick={() => navigate("/Signup")}
                   className="bg-green-700 text-white px-3 py-1 rounded-full text-sm"
                 >
-                  Create
+                  Account
                 </button>
               )}
               <button onClick={() => setMenuOpen(!menuOpen)} className="text-white text-xl">
