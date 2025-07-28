@@ -14,7 +14,6 @@ const Navbar = ({ handleOrderPopup, scrollToTopSelling }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState(null);
 
-  // ✅ Check and update user from localStorage
   useEffect(() => {
     const updateUser = () => {
       const storedUser = localStorage.getItem("herbalUser");
@@ -22,11 +21,7 @@ const Navbar = ({ handleOrderPopup, scrollToTopSelling }) => {
     };
 
     updateUser();
-
-    // ✅ Listen to storage changes (between tabs)
     window.addEventListener("storage", updateUser);
-
-    // ✅ Poll every 1 sec in case storage event doesn't fire
     const intervalId = setInterval(updateUser, 1000);
 
     return () => {
@@ -104,7 +99,7 @@ const Navbar = ({ handleOrderPopup, scrollToTopSelling }) => {
             </div>
           </div>
 
-          {/* Right Side */}
+          {/* Right Side (Desktop) */}
           <div className="hidden sm:flex flex-1 justify-end items-center gap-4">
             <NavLink
               to="/cart"
@@ -144,6 +139,14 @@ const Navbar = ({ handleOrderPopup, scrollToTopSelling }) => {
               <NavLink to="/cart" className="bg-orange-400 p-2 rounded-full text-white">
                 <FaShoppingCart />
               </NavLink>
+              {!user && (
+                <button
+                  onClick={() => navigate("/Signup")}
+                  className="bg-green-700 text-white px-3 py-1 rounded-full text-sm"
+                >
+                  Create
+                </button>
+              )}
               <button onClick={() => setMenuOpen(!menuOpen)} className="text-white text-xl">
                 {menuOpen ? <FaTimes /> : <FaBars />}
               </button>

@@ -11,6 +11,18 @@ export const faq = [
     question: "Hello",
     answer: "Yes, how can i help you?",
   },
+  {
+    question: "hello",
+    answer: "Yes, how can i help you?",
+  },
+  {
+    question: "hi",
+    answer: "Yes, how can i help you?",
+  },
+  {
+    question: "Salam",
+    answer: "Yes, how can i help you?",
+  },
    {
     question: "Hi",
     answer: "Yes, how can i help you?",
