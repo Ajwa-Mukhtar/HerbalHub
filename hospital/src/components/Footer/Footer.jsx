@@ -198,7 +198,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="border-t border-gray-300 py-4 flex flex-col md:flex-row items-center justify-between text-sm">
-          <p className="font-semibold">Herbal Hub: Chat, Shop, Track.</p>
+          <p className="font-semibold">Herbal Hub</p>
           <p>Herbal Hub © {new Date().getFullYear()}</p>
         </div>
       </div>
