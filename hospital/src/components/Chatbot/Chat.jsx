@@ -23,9 +23,7 @@ const Chatbot = () => {
   };
 
   const toggleChat = () => {
-    if (!isOpen) {
-      startNewChat();
-    }
+    if (!isOpen) startNewChat();
     setIsOpen(!isOpen);
   };
 
@@ -52,12 +50,12 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chatbot FAB */}
+      {/* FAB Button */}
       <div
         className="z-50 group"
         style={{
           position: "fixed",
-          bottom: isMobile ? "70px" : "20px",
+          bottom: isMobile ? "80px" : "20px",
           right: isMobile ? "16px" : "20px",
         }}
       >
@@ -78,14 +76,15 @@ const Chatbot = () => {
           className="bg-white border rounded-lg shadow-lg z-50 flex flex-col"
           style={{
             position: "fixed",
-            bottom: isMobile ? "120px" : "80px",
+            bottom: isMobile ? "140px" : "80px",
             right: isMobile ? "10px" : "20px",
             width: isMobile ? "90vw" : "350px",
-            height: isMobile ? "70vh" : "450px",
+            height: isMobile ? "75vh" : "450px",
+            maxHeight: "85vh",
           }}
         >
           {/* Header */}
-          <div className="bg-green-700 text-white p-3 rounded-t-lg font-semibold flex justify-between items-center">
+          <div className="bg-green-700 text-white p-3 rounded-t-lg font-semibold flex justify-between items-center text-sm">
             <span>Herbal Chatbot - Chat {currentChatIndex + 1}</span>
             <button
               onClick={toggleChat}
@@ -126,7 +125,7 @@ const Chatbot = () => {
             ))}
           </div>
 
-          {/* Input */}
+          {/* Input Area */}
           <div className="flex border-t p-2">
             <input
               type="text"
