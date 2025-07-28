@@ -14,7 +14,6 @@ const ReturnExchangePolicy = () => {
         <li>Products must be returned within <strong>7 days</strong> of the delivery date.</li>
         <li>Items must be <strong>unused, unopened</strong>, and in their <strong>original packaging</strong>.</li>
         <li>Return requests must include a <strong>valid reason</strong> (e.g., damaged product, wrong item delivered).</li>
-        <li><strong>Perishable items</strong>, personalized products, and <strong>consultation services</strong> are non-returnable and non-exchangeable.</li>
       </ul>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">2. Non-Eligible Items</h2>
@@ -26,7 +25,7 @@ const ReturnExchangePolicy = () => {
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">3. Return Process</h2>
       <ol className="list-decimal list-inside mb-4 space-y-1">
-        <li>Contact our support team at <strong>sardar@gmail.com</strong> within 7 days of delivery.</li>
+        <li>Contact our support team at <strong>hansrajsingh.asad2020@gmail.com</strong> within 7 days of delivery.</li>
         <li>Provide your order number, product details, and reason for return.</li>
         <li>Once your request is reviewed and approved, we will provide return instructions.</li>
       </ol>
@@ -47,7 +46,7 @@ const ReturnExchangePolicy = () => {
       </ul>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">6. Contact Us</h2>
-      <p className="mb-2"><strong>Email:</strong> sardar@gmail.com</p>
+      <p className="mb-2"><strong>Email:</strong> hansrajsingh.asad2020@gmail.com</p>
       <p className="mb-2"><strong>Phone:</strong> +92-309-1421478</p>
       <p className="mb-2"><strong>Address:</strong> Sardar Shop, Lahore, Pakistan</p>
     </div>

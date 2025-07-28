@@ -2,10 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import ScrollToTop from "./components/ScrollToTop";
 
 import AboutUs from "./pages/AboutUs";
@@ -20,18 +18,18 @@ import Products from "./components/Products/Products";
 import ProductDetail from "./pages/ProductDetail";
 import CartPage from "./pages/CartPage";
 import CertificationPage from "./pages/CertificationPage";
-import ReturnExchangePolicy from './pages/ReturnExchangePolicy';
-import CheckoutPage from "./pages/CheckoutPage"; // agar tumhara file yehi path par hai
+import ReturnExchangePolicy from "./pages/ReturnExchangePolicy";
+import CheckoutPage from "./pages/CheckoutPage";
+import BlogDetailPage from "./components/BlogDetailPage"; // 🔧 FIXED: should be in `components` not `component`
 
-import { CartProvider } from "./context/CartContext"; // ✅ CartProvider imported
-
-
+import { CartProvider } from "./context/CartContext";
 import MyProfile from "./pages/MyProfile";
+
 function App() {
   return (
-    <CartProvider> {/* ✅ Wrap the entire app in CartProvider */}
+    <CartProvider>
       <Router>
-        <ScrollToTop/>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -49,8 +47,8 @@ function App() {
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/certification" element={<CertificationPage />} />
           <Route path="/return-policy" element={<ReturnExchangePolicy />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/Consultation" element={<Consultation />} />
+          <Route path="/BlogDetailPage/:id" element={<BlogDetailPage />} />
+          <Route path="/Consultation" element={<Consultation />} />
         </Routes>
         <Footer />
         <ToastContainer position="top-center" autoClose={3000} />
